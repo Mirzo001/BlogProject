@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'home' %}"> Blog </a></h1>
+    </header>
+    {% if user.is_authenticated %}
+    <p> Xush Kelibsiz, {{ user.username }}</p>
+    <p><a href="{% url 'logout' %}"> Chiqib Ketish</a></p>
+    {% else %}
+    <p>
+        <a href="{% url 'login' %}">Saytga Kirish</a>
+        <a href="{% url 'signup '%">Ro'yxatdan O'tish</a>
+    </p>
+    {% endif %}
+    <div>
+        {% block content %} 
+        {% endblock content %}
+    </div>
+    <footer>
+        <h2><a href="{% url 'post_new' %}"> Yangi Post Yozish</a></h2>
+    </footer>
+</body>
+</html>
